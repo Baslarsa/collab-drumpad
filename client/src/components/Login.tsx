@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import ElkLogo from "./ElkLogo";
+import { useState } from "react";
 
-const Login = ({ setId }: { setId: (id: string) => void }) => {
+const Login = ({ setId }: { setId: (userName: string) => void }) => {
   const [inputValue, setInputValue] = useState("");
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -9,14 +8,10 @@ const Login = ({ setId }: { setId: (id: string) => void }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div>
-        <ElkLogo />
-        <h2 className="text-white font-bold">Collab Drumpad</h2>
-      </div>
+    <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8 text-left">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-yellow-500">
-          Enter your username
+          Enter The Room ID
         </h2>
       </div>
 
@@ -28,9 +23,9 @@ const Login = ({ setId }: { setId: (id: string) => void }) => {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
               >
-                Username
+                Room ID
               </label>
-              <div className="mt-1">
+              <div className="mt-1 text-black">
                 <input
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}

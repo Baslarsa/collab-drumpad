@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 
-const PREFIX = "collab-drumpad-";
+const PREFIX = "collab-drumpad-id";
 
-const useLocalStorage = (key: string, initialValue: () => void) => {
-  const prefixedKey = PREFIX + key;
-
-  const storageValue = localStorage.getItem(prefixedKey);
+const useLocalStorage = (initialValue?: () => void) => {
+  const storageValue = localStorage.getItem(PREFIX);
   const [value, setValue] = useState(() => {
     if (storageValue !== null) return JSON.parse(storageValue);
     if (typeof initialValue === "function") {
@@ -16,8 +14,8 @@ const useLocalStorage = (key: string, initialValue: () => void) => {
   });
 
   useEffect(() => {
-    localStorage.setItem(prefixedKey, JSON.stringify(value));
-  }, [prefixedKey, value]);
+    localStorage.setItem(PREFIX, JSON.stringify(value));
+  }, [value]);
 
   return [value, setValue];
 };
