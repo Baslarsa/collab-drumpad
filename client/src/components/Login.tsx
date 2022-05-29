@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ElkLogo from "./elk-logo";
+import ElkLogo from "./ElkLogo";
 
 const Login = ({ setId }: { setId: (id: string) => void }) => {
   const [inputValue, setInputValue] = useState("");

@@ -1,15 +1,18 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Socket server",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
-  "author": "David Larsson",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^17.0.35",
-    "nodemon": "^2.0.16"
+  "dependencies": {
+    "nodemon": "^2.0.16",
+    "socket-io": "^1.0.0",
+    "socket.io": "^4.5.1"
   }
 }
