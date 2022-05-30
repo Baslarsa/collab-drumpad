@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { SocketContext, SocketType } from "../../lib/context/socket";
+import ElkLogo from "../ElkLogo";
 
 export default function PadFrame({ children }: { children: JSX.Element }) {
   const { socket } = useContext(SocketContext) as SocketType;
@@ -29,12 +30,18 @@ export default function PadFrame({ children }: { children: JSX.Element }) {
     }
   };
   return (
-    <div
-      className="py-16 grid grid-cols-3 gap-4 max-w-6xl px-6"
-      onKeyPress={(e) => handleKeyPress(e.code)}
-      tabIndex={0}
-    >
-      {children}
+    <div className="p-6 bg-zinc-900 rounded-lg">
+      <div className="text-left flex items-start justify-between">
+        <ElkLogo style={{ fill: "#f6dd00" }} />
+        <h2 className="text-white font-bold">Cool kinda 808</h2>
+      </div>
+      <div
+        className="py-6 grid grid-cols-3 gap-4 max-w-6xl"
+        onKeyPress={(e) => handleKeyPress(e.code)}
+        tabIndex={0}
+      >
+        {children}
+      </div>
     </div>
   );
 }

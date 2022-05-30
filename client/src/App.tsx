@@ -1,10 +1,14 @@
 import "./App.css";
 import DrumPad from "./components/DrumPad";
 import { AudioPlayerProvider } from "react-use-audio-player";
-import SocketProvider from "./lib/context/socket";
+import SocketProvider, {
+  SocketContext,
+  SocketType,
+} from "./lib/context/socket";
 import Login from "./components/Login";
 import useLocalStorage from "./hooks/useLocalStorage";
 import Header from "./components/Header";
+import { useContext } from "react";
 
 function App() {
   const [id, setId] = useLocalStorage(() => {

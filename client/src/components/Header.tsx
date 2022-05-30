@@ -1,3 +1,6 @@
+import classNames from "classnames";
+import { useContext, useEffect, useState } from "react";
+import { SocketContext, SocketType } from "../lib/context/socket";
 import ElkLogo from "./ElkLogo";
 
 export default function Header({
@@ -7,14 +10,33 @@ export default function Header({
   id: string;
   clearId: () => void;
 }) {
+  const [statusMessage, setStatusMessage] = useState("Not connected");
+  const { socket } = useContext(SocketContext) as SocketType;
+
+  useEffect(() => {
+    socket.on("connect", () => {
+      setStatusMessage("Connected to server");
+    });
+    socket.on("disconnect", () => {
+      setStatusMessage("Disconnected from server");
+    });
+  }, []);
   return (
-    <div className="w-full p-5 flex justify-between">
+    <div className="w-full p-5 flex justify-between items-center">
       <div className="text-left">
-        <ElkLogo />
+        <ElkLogo style={{ fill: "#fff" }} />
         <h2 className="text-white font-bold">Collab Drumpad</h2>
       </div>
       {id && (
         <div className="flex items-center">
+          <p
+            className={classNames("mx-4", {
+              "text-red-500": statusMessage === "Disconnected from server",
+              "text-green-500": statusMessage === "Connected to server",
+            })}
+          >
+            {statusMessage}
+          </p>
           <p>
             <span className="font-bold">Room ID:</span>&nbsp;{id}
           </p>
